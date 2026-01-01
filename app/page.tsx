@@ -20,7 +20,7 @@ import {
   FadeInView, 
   SlideInLeft 
 } from "@/components/animations";
-import { Mail, MapPin, Github, Linkedin, Twitter, ExternalLink, Download, Briefcase, Sparkles, User, FolderOpen, Code, Home, GraduationCap, Languages, Brain } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, ExternalLink, Download, Briefcase, Sparkles, User, FolderOpen, Code, Home, GraduationCap, Languages, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -142,18 +142,7 @@ export default function HomePage() {
                       </a>
                     </MagneticButton>
                   )}
-                  {socials.twitter && (
-                    <MagneticButton strength={0.5}>
-                      <a 
-                        href={socials.twitter} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-muted"
-                      >
-                        <Twitter className="h-6 w-6" />
-                      </a>
-                    </MagneticButton>
-                  )}
+
                   <span className="text-muted-foreground text-sm flex items-center gap-2 ml-2">
                     <MapPin className="h-4 w-4" />
                     {personal.location}
@@ -588,18 +577,7 @@ export default function HomePage() {
                     </a>
                   </MagneticButton>
                 )}
-                {socials.twitter && (
-                  <MagneticButton strength={0.5}>
-                    <a 
-                      href={socials.twitter} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-muted-foreground hover:text-foreground transition-colors p-3 rounded-full hover:bg-muted"
-                    >
-                      <Twitter className="h-6 w-6" />
-                    </a>
-                  </MagneticButton>
-                )}
+
               </div>
             </div>
           </FadeInView>

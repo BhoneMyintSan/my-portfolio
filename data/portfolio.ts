@@ -24,8 +24,6 @@ export const portfolioData = {
   socials: {
     github: "https://github.com/BhoneMyintSan",
     linkedin: "https://linkedin.com/in/bhone-myint-san-b96024330",
-    twitter: "", // Optional: add your Twitter/X profile link
-    // Add or remove social links as needed
   },
 
   // ──────────────────────────────────────────
