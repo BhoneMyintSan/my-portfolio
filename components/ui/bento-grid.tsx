@@ -10,7 +10,7 @@ interface BentoGridProps {
 
 export function BentoGrid({ children, className }: BentoGridProps) {
   return (
-    <div className={cn("grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[22rem]", className)}>
+    <div className={cn("grid grid-cols-1 md:grid-cols-3 gap-6", className)}>
       {children}
     </div>
   );
@@ -21,6 +21,7 @@ interface BentoCardProps {
   description: string;
   icon?: React.ReactNode;
   className?: string;
+  media?: React.ReactNode;
   children?: React.ReactNode;
   href?: string;
   cta?: string;
@@ -31,6 +32,7 @@ export function BentoCard({
   description,
   icon,
   className,
+  media,
   children,
   href,
   cta,
@@ -53,7 +55,7 @@ export function BentoCard({
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-purple-500/10 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       {/* Inner content container */}
-      <div className="relative p-6 flex flex-col h-full bg-card/95 m-[1px] rounded-2xl">
+      <div className="relative p-7 flex flex-col h-full bg-card/95 m-[1px] rounded-2xl">
         {/* Header with icon and title */}
         <div className="flex items-start gap-4 mb-4">
           {icon && (
@@ -66,21 +68,22 @@ export function BentoCard({
             </motion.div>
           )}
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-xl mb-1 group-hover:text-primary transition-colors duration-300 line-clamp-1">
+            <h3 className="font-bold text-xl mb-1 group-hover:text-primary transition-colors duration-300">
               {title}
             </h3>
           </div>
         </div>
+
+        {/* Media (optional) */}
+        {media && <div className="mb-5">{media}</div>}
         
         {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
           {description}
         </p>
 
         {/* Custom children content (tech badges, buttons) */}
-        <div className="flex-1 flex flex-col justify-end">
-          {children}
-        </div>
+        {children && <div className="flex flex-col gap-4">{children}</div>}
 
         {/* CTA Link */}
         {href && cta && (

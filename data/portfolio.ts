@@ -7,7 +7,7 @@ export const portfolioData = {
   // Personal Information
   // ──────────────────────────────────────────
   personal: {
-    name: "Bhone Myint San",
+    name: "Bhone Myint San(Bruce)",
     title: "Data Science & Information Technology Student",
     // Words that cycle in the hero section typewriter
     roles: ["Data Analytics", "Web Development", "UI/UX Design", "System Development"],
@@ -15,7 +15,7 @@ export const portfolioData = {
     location: "Samut Prakan, Thailand",
     bio: "Motivated final-year Data Science and Information Technology student at Assumption University of Thailand. Skilled in Python, JavaScript, SQL, Power BI, and data visualization. Experienced in web development, data analysis, and system design through hands-on projects. Eager to apply data-driven insights and front-end development skills.",
     avatar: "/profile.jpg", // Place your photo in the public folder
-    resumeUrl: "/resume.pdf", // Place your resume in the public folder
+    resumeUrl: "/pdf/BhoneMyintSan_CVresume_2025.pdf", // Place your resume in the public folder
   },
 
   // ──────────────────────────────────────────
@@ -24,6 +24,7 @@ export const portfolioData = {
   socials: {
     github: "https://github.com/BhoneMyintSan",
     linkedin: "https://linkedin.com/in/bhone-myint-san-b96024330",
+    twitter: "", // Optional: add your Twitter/X profile link
     // Add or remove social links as needed
   },
 
@@ -60,7 +61,8 @@ export const portfolioData = {
       technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
       liveUrl: "https://ontime-moderator.vercel.app",
       githubUrl: "https://github.com/BhoneMyintSan/ontime_moderator",
-      image: "/projects/ontime-moderator.jpg",
+      pdfUrl: "",
+      image: "/projects/Ontime_moderator.png",
       featured: true,
     },
     {
@@ -68,9 +70,10 @@ export const portfolioData = {
       description:
         "The customer-facing frontend for OnTime service platform. Users can browse services, make bookings, and manage their requests with a beautiful modern UI.",
       technologies: ["React", "TypeScript", "Tailwind CSS"],
-      liveUrl: "",
+      liveUrl: "https://ontime-sp1.vercel.app/",
       githubUrl: "https://github.com/TrisTheKitten/OnTime_Frontend",
-      image: "/projects/ontime-frontend.jpg",
+      pdfUrl: "",
+      image: "/projects/Ontime.png",
       featured: true,
     },
     {
@@ -80,7 +83,8 @@ export const portfolioData = {
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "promptparse"],
       liveUrl: "",
       githubUrl: "https://github.com/BhoneMyintSan/promptpay_QR",
-      image: "/projects/promptpay-qr.jpg",
+      pdfUrl: "",
+      image: "",
       featured: false,
     },
     {
@@ -90,7 +94,8 @@ export const portfolioData = {
       technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
       liveUrl: "https://feel-abac-online-order.vercel.app",
       githubUrl: "https://github.com/Reon1917/feel-abac-online-order",
-      image: "/projects/feel-abac.jpg",
+      pdfUrl: "",
+      image: "/projects/feel-abac.png",
       featured: false,
     },
     {
@@ -100,7 +105,8 @@ export const portfolioData = {
       technologies: ["Python", "Tkinter", "Oracle DB", "cx_Oracle"],
       liveUrl: "",
       githubUrl: "https://github.com/BhoneMyintSan/Digital_Menu",
-      image: "/projects/digital-menu.jpg",
+      pdfUrl: "/pdf/Digital%20food%20Menu.pdf",
+      image: "/projects/digital_menu.png",
       featured: false,
     },
     {
@@ -110,7 +116,8 @@ export const portfolioData = {
       technologies: ["Python", "Jupyter Notebook", "Deep Learning", "OpenCV"],
       liveUrl: "",
       githubUrl: "https://github.com/BhoneMyintSan/CV_Super-resolution",
-      image: "/projects/cv-super-resolution.jpg",
+      pdfUrl: "",
+      image: "",
       featured: false,
     },
     {
@@ -120,7 +127,8 @@ export const portfolioData = {
       technologies: ["Java", "OOP", "Game Development"],
       liveUrl: "",
       githubUrl: "https://github.com/BhoneMyintSan/penguin_dive",
-      image: "/projects/penguin-dive.jpg",
+      pdfUrl: "",
+      image: "",
       featured: false,
     },
     {
@@ -130,8 +138,45 @@ export const portfolioData = {
       technologies: ["Figma", "UI/UX Design", "System Design"],
       liveUrl: "",
       githubUrl: "",
-      image: "/projects/au-wallet.jpg",
+      pdfUrl: "/pdf/AU%20digital%20wallet.pdf",
+      image: "/projects/AU%20digital%20wallet.png",
       featured: false,
+    },
+    {
+      title: "Mobile Phone Sales Performance Analysis",
+      description:
+        "A business and data analytics project analyzing mobile phone sales data from Amazon listings. Cleaned and transformed raw data, created key performance indicators, and built interactive dashboards to analyze sales trends, revenue distribution, pricing tiers, and top-performing brands for strategic decision-making.",
+      technologies: [
+        "Power BI",
+        "Looker Studio",
+        "Excel",
+        "Data Analysis",
+        "Data Visualization",
+        "Business Intelligence",
+      ],
+      liveUrl: "",
+      githubUrl: "",
+      pdfUrl: "/pdf/Phone_Sales_performance_Analysis.pdf",
+      image: "/projects/phone_sales_performance.png",
+      featured: true,
+    },
+    {
+      title: "Coffee Sales Data Mining Analysis",
+      description:
+        "A data mining project analyzing café sales data to uncover sales patterns and business insights. Performed data cleaning, classification, regression, clustering, and time-series analysis using Orange and Python to identify key sales drivers, customer purchasing behavior, and revenue trends.",
+      technologies: [
+        "Python",
+        "Orange Data Mining",
+        "Pandas",
+        "Matplotlib",
+        "Data Mining",
+        "Time Series Analysis",
+      ],
+      liveUrl: "",
+      githubUrl: "",
+      pdfUrl: "/pdf/Data%20Mining%20Project%20Gp1.pdf",
+      image: "/projects/data_mining.png",
+      featured: true,
     },
     {
       title: "Coffee Shops Data Analysis",
@@ -140,7 +185,8 @@ export const portfolioData = {
       technologies: ["Python", "Google Colab", "Apify", "Data Visualization"],
       liveUrl: "",
       githubUrl: "",
-      image: "/projects/coffee-analysis.jpg",
+      pdfUrl: "/pdf/Coffee%20shops%20data%20analysis.pdf",
+      image: "/projects/coffeeshop_data_analysis.png",
       featured: false,
     },
   ],

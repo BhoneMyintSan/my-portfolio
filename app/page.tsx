@@ -107,7 +107,7 @@ export default function HomePage() {
                   </MagneticButton>
                   <MagneticButton>
                     <Button variant="outline" size="lg" asChild className="rounded-full px-8">
-                      <a href={personal.resumeUrl} download>
+                      <a href={personal.resumeUrl} download="Bhone-Myint-San-CV.pdf">
                         <Download className="mr-2 h-4 w-4" />
                         Download CV
                       </a>
@@ -401,7 +401,7 @@ export default function HomePage() {
             </div>
           </FadeInView>
           
-          <BentoGrid className="md:auto-rows-[24rem]">
+          <BentoGrid>
             {projects.map((project, index) => (
               <TiltCard key={project.title} className={project.featured ? "md:col-span-2" : ""}>
                 <BentoCard
@@ -411,6 +411,19 @@ export default function HomePage() {
                   className="h-full"
                   href={project.liveUrl || project.githubUrl}
                   cta={project.liveUrl ? "View Live" : "View Code"}
+                  media={
+                    project.image ? (
+                      <div className={`relative w-full ${project.featured ? "h-56" : "h-48"} rounded-xl overflow-hidden border border-border/50`}>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 768px) 33vw, 100vw"
+                        />
+                      </div>
+                    ) : null
+                  }
                 >
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
@@ -458,6 +471,19 @@ export default function HomePage() {
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
                           Demo
+                        </a>
+                      </Button>
+                    )}
+                    {project.pdfUrl && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
+                      >
+                        <a href={project.pdfUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                          PDF
                         </a>
                       </Button>
                     )}
