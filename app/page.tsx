@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +21,7 @@ import {
   FadeInView, 
   SlideInLeft 
 } from "@/components/animations";
-import { Mail, MapPin, Github, Linkedin, ExternalLink, Download, Briefcase, Sparkles, User, FolderOpen, Code, Home, GraduationCap, Languages, Brain } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, ExternalLink, Download, Briefcase, Sparkles, User, FolderOpen, Code, Home, GraduationCap, Languages, Brain, BarChart3, Globe, Palette, Gamepad2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -380,108 +381,7 @@ export default function HomePage() {
         <Separator className="max-w-md mx-auto" />
 
         {/* Projects Section - Bento Grid */}
-        <section id="projects" className="py-20">
-          <FadeInView>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Featured Projects</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                A selection of my recent work and side projects
-              </p>
-            </div>
-          </FadeInView>
-          
-          <BentoGrid>
-            {projects.map((project, index) => (
-              <TiltCard key={project.title} className={project.featured ? "md:col-span-2" : ""}>
-                <BentoCard
-                  title={project.title}
-                  description={project.description}
-                  icon={<Code className="h-5 w-5" />}
-                  className="h-full"
-                  href={project.liveUrl || project.githubUrl}
-                  cta={project.liveUrl ? "View Live" : "View Code"}
-                  media={
-                    project.image ? (
-                      <div className={`relative w-full ${project.featured ? "h-56" : "h-48"} rounded-xl overflow-hidden border border-border/50`}>
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 768px) 33vw, 100vw"
-                        />
-                      </div>
-                    ) : null
-                  }
-                >
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.technologies.slice(0, 4).map((tech) => (
-                      <Badge 
-                        key={tech} 
-                        variant="secondary" 
-                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-0 hover:bg-primary/20 transition-colors"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <Badge 
-                        variant="secondary" 
-                        className="text-xs px-2 py-0.5 bg-muted text-muted-foreground border-0"
-                      >
-                        +{project.technologies.length - 4}
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  {/* Action buttons */}
-                  <div className="flex items-center gap-2">
-                    {project.githubUrl && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        asChild 
-                        className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                      >
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-3.5 w-3.5 mr-1.5" />
-                          Code
-                        </a>
-                      </Button>
-                    )}
-                    {project.liveUrl && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        asChild
-                        className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                      >
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-                          Demo
-                        </a>
-                      </Button>
-                    )}
-                    {project.pdfUrl && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        asChild
-                        className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                      >
-                        <a href={project.pdfUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-                          PDF
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </BentoCard>
-              </TiltCard>
-            ))}
-          </BentoGrid>
-        </section>
+        <ProjectsSection projects={projects} />
 
         <Separator className="max-w-md mx-auto" />
 
@@ -701,5 +601,195 @@ export default function HomePage() {
         </motion.footer>
       </main>
     </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ProjectsSection Component with Category Filtering
+// ═══════════════════════════════════════════════════════════════════
+
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  category: string;
+  liveUrl: string;
+  githubUrl: string;
+  pdfUrl: string;
+  image: string;
+  featured: boolean;
+}
+
+const categories = [
+  { id: "all", label: "All Projects", icon: FolderOpen },
+  { id: "Data & Analytics", label: "Data & Analytics", icon: BarChart3 },
+  { id: "Web Development", label: "Web Development", icon: Globe },
+  { id: "UI/UX Design", label: "UI/UX Design", icon: Palette },
+  { id: "other", label: "Other", icon: Code },
+];
+
+function ProjectsSection({ projects }: { projects: Project[] }) {
+  const [activeCategory, setActiveCategory] = useState("Data & Analytics");
+
+  const filteredProjects = activeCategory === "all" 
+    ? projects 
+    : activeCategory === "other"
+    ? projects.filter(p => !["Data & Analytics", "Web Development", "UI/UX Design"].includes(p.category))
+    : projects.filter(p => p.category === activeCategory);
+
+  return (
+    <section id="projects" className="py-20">
+      <FadeInView>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-4">Featured Projects</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            A selection of my recent work and side projects
+          </p>
+        </div>
+      </FadeInView>
+
+      {/* Category Filter Tabs */}
+      <FadeInView>
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            const isActive = activeCategory === cat.id;
+            return (
+              <motion.button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  isActive 
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                    : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Icon className="h-4 w-4" />
+                {cat.label}
+                {cat.id !== "all" && (
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                    isActive ? "bg-primary-foreground/20" : "bg-muted-foreground/20"
+                  }`}>
+                    {cat.id === "other" 
+                      ? projects.filter(p => !["Data & Analytics", "Web Development", "UI/UX Design"].includes(p.category)).length
+                      : projects.filter(p => p.category === cat.id).length
+                    }
+                  </span>
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
+      </FadeInView>
+      
+      <BentoGrid>
+        {filteredProjects.map((project) => (
+          <TiltCard key={project.title} className={project.featured ? "md:col-span-2" : ""}>
+            <BentoCard
+              title={project.title}
+              description={project.description}
+              icon={
+                project.category === "Data & Analytics" ? <BarChart3 className="h-5 w-5" /> :
+                project.category === "Web Development" ? <Globe className="h-5 w-5" /> :
+                project.category === "UI/UX Design" ? <Palette className="h-5 w-5" /> :
+                <Code className="h-5 w-5" />
+              }
+              className="h-full"
+              href={project.liveUrl || project.githubUrl || project.pdfUrl}
+              cta={project.liveUrl ? "View Live" : project.githubUrl ? "View Code" : project.pdfUrl ? "View PDF" : ""}
+              media={
+                project.image ? (
+                  <div className={`relative w-full ${project.featured ? "h-56" : "h-48"} rounded-xl overflow-hidden border border-border/50`}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                  </div>
+                ) : null
+              }
+            >
+              {/* Category Badge */}
+              <div className="mb-3">
+                <Badge 
+                  variant="outline" 
+                  className="text-xs bg-primary/5 text-primary border-primary/20"
+                >
+                  {project.category}
+                </Badge>
+              </div>
+
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {project.technologies.slice(0, 4).map((tech) => (
+                  <Badge 
+                    key={tech} 
+                    variant="secondary" 
+                    className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-0 hover:bg-primary/20 transition-colors"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+                {project.technologies.length > 4 && (
+                  <Badge 
+                    variant="secondary" 
+                    className="text-xs px-2 py-0.5 bg-muted text-muted-foreground border-0"
+                  >
+                    +{project.technologies.length - 4}
+                  </Badge>
+                )}
+              </div>
+              
+              {/* Action buttons */}
+              <div className="flex items-center gap-2">
+                {project.githubUrl && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    asChild 
+                    className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
+                  >
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-3.5 w-3.5 mr-1.5" />
+                      Code
+                    </a>
+                  </Button>
+                )}
+                {project.liveUrl && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    asChild
+                    className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
+                  >
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                      Demo
+                    </a>
+                  </Button>
+                )}
+                {project.pdfUrl && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    asChild
+                    className="h-8 px-3 rounded-full text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
+                  >
+                    <a href={project.pdfUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                      PDF
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </BentoCard>
+          </TiltCard>
+        ))}
+      </BentoGrid>
+    </section>
   );
 }

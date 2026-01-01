@@ -49,97 +49,12 @@ export const portfolioData = {
   ],
 
   // ──────────────────────────────────────────
-  // Projects - with featured flag for bento grid sizing
+  // Projects - with category and featured flag
   // ──────────────────────────────────────────
   projects: [
-    {
-      title: "OnTime Moderator",
-      description:
-        "A comprehensive moderation dashboard for the OnTime service platform. Manage service listings, handle reports, resolve tickets, and monitor user activity with real-time updates.",
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-      liveUrl: "https://ontime-moderator.vercel.app",
-      githubUrl: "https://github.com/BhoneMyintSan/ontime_moderator",
-      pdfUrl: "",
-      image: "/projects/Ontime_moderator.png",
-      featured: true,
-    },
-    {
-      title: "OnTime Frontend",
-      description:
-        "The customer-facing frontend for OnTime service platform. Users can browse services, make bookings, and manage their requests with a beautiful modern UI.",
-      technologies: ["React", "TypeScript", "Tailwind CSS"],
-      liveUrl: "https://ontime-sp1.vercel.app/",
-      githubUrl: "https://github.com/TrisTheKitten/OnTime_Frontend",
-      pdfUrl: "",
-      image: "/projects/Ontime.png",
-      featured: true,
-    },
-    {
-      title: "PromptPay QR Generator",
-      description:
-        "A complete Next.js application for generating, parsing, and validating Thai PromptPay QR codes. Accept payments via bank account, phone number, or National ID.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "promptparse"],
-      liveUrl: "",
-      githubUrl: "https://github.com/BhoneMyintSan/promptpay_QR",
-      pdfUrl: "",
-      image: "",
-      featured: false,
-    },
-    {
-      title: "Feel ABAC Online Order",
-      description:
-        "An online ordering system for Feel ABAC. Full-stack application with admin dashboard for managing orders and menu items.",
-      technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
-      liveUrl: "https://feel-abac-online-order.vercel.app",
-      githubUrl: "https://github.com/Reon1917/feel-abac-online-order",
-      pdfUrl: "",
-      image: "/projects/feel-abac.png",
-      featured: false,
-    },
-    {
-      title: "Digital Menu System",
-      description:
-        "A desktop application for managing and viewing digital restaurant menus with multilingual support (Thai/English). Connects to Oracle database with intuitive GUI.",
-      technologies: ["Python", "Tkinter", "Oracle DB", "cx_Oracle"],
-      liveUrl: "",
-      githubUrl: "https://github.com/BhoneMyintSan/Digital_Menu",
-      pdfUrl: "/pdf/Digital%20food%20Menu.pdf",
-      image: "/projects/digital_menu.png",
-      featured: false,
-    },
-    {
-      title: "CV Super-Resolution",
-      description:
-        "A computer vision project for image super-resolution using deep learning. Enhances low-resolution images of Thai traditional outfits.",
-      technologies: ["Python", "Jupyter Notebook", "Deep Learning", "OpenCV"],
-      liveUrl: "",
-      githubUrl: "https://github.com/BhoneMyintSan/CV_Super-resolution",
-      pdfUrl: "",
-      image: "",
-      featured: false,
-    },
-    {
-      title: "Penguin Dive",
-      description:
-        "A 2D Java-based game with object-oriented design principles, implementing collision detection and scoring logic for dynamic gameplay experience.",
-      technologies: ["Java", "OOP", "Game Development"],
-      liveUrl: "",
-      githubUrl: "https://github.com/BhoneMyintSan/penguin_dive",
-      pdfUrl: "",
-      image: "",
-      featured: false,
-    },
-    {
-      title: "AU Digital Wallet",
-      description:
-        "Designed and implemented a digital wallet system that replaced paper coupons, reducing canteen wait times by 30% and improving user convenience through Figma-based UI/UX design.",
-      technologies: ["Figma", "UI/UX Design", "System Design"],
-      liveUrl: "",
-      githubUrl: "",
-      pdfUrl: "/pdf/AU%20digital%20wallet.pdf",
-      image: "/projects/AU%20digital%20wallet.png",
-      featured: false,
-    },
+    // ═══════════════════════════════════════
+    // DATA & ANALYTICS PROJECTS (shown first)
+    // ═══════════════════════════════════════
     {
       title: "Mobile Phone Sales Performance Analysis",
       description:
@@ -152,6 +67,7 @@ export const portfolioData = {
         "Data Visualization",
         "Business Intelligence",
       ],
+      category: "Data & Analytics",
       liveUrl: "",
       githubUrl: "",
       pdfUrl: "/pdf/Phone_Sales_performance_Analysis.pdf",
@@ -170,6 +86,7 @@ export const portfolioData = {
         "Data Mining",
         "Time Series Analysis",
       ],
+      category: "Data & Analytics",
       liveUrl: "",
       githubUrl: "",
       pdfUrl: "/pdf/Data%20Mining%20Project%20Gp1.pdf",
@@ -181,10 +98,113 @@ export const portfolioData = {
       description:
         "Collected and analyzed 5,000+ TripAdvisor reviews using Apify and Colab. Conducted EDA and visualizations to uncover correlations between ratings, keywords, and customer sentiment for Bangkok coffee shops.",
       technologies: ["Python", "Google Colab", "Apify", "Data Visualization"],
+      category: "Data & Analytics",
       liveUrl: "",
       githubUrl: "",
       pdfUrl: "/pdf/Coffee%20shops%20data%20analysis.pdf",
       image: "/projects/coffeeshop_data_analysis.png",
+      featured: true,
+    },
+    {
+      title: "CV Super-Resolution",
+      description:
+        "A computer vision project for image super-resolution using deep learning. Enhances low-resolution images of Thai traditional outfits.",
+      technologies: ["Python", "Jupyter Notebook", "Deep Learning", "OpenCV"],
+      category: "Data & Analytics",
+      liveUrl: "",
+      githubUrl: "https://github.com/BhoneMyintSan/CV_Super-resolution",
+      pdfUrl: "",
+      image: "",
+      featured: false,
+    },
+    // ═══════════════════════════════════════
+    // WEB DEVELOPMENT PROJECTS
+    // ═══════════════════════════════════════
+    {
+      title: "OnTime Moderator",
+      description:
+        "A comprehensive moderation dashboard for the OnTime service platform. Manage service listings, handle reports, resolve tickets, and monitor user activity with real-time updates.",
+      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
+      category: "Web Development",
+      liveUrl: "https://ontime-moderator.vercel.app",
+      githubUrl: "https://github.com/BhoneMyintSan/ontime_moderator",
+      pdfUrl: "",
+      image: "/projects/Ontime_moderator.png",
+      featured: true,
+    },
+    {
+      title: "OnTime Frontend",
+      description:
+        "The customer-facing frontend for OnTime service platform. Users can browse services, make bookings, and manage their requests with a beautiful modern UI.",
+      technologies: ["React", "TypeScript", "Tailwind CSS"],
+      category: "Web Development",
+      liveUrl: "https://ontime-sp1.vercel.app/",
+      githubUrl: "https://github.com/TrisTheKitten/OnTime_Frontend",
+      pdfUrl: "",
+      image: "/projects/Ontime.png",
+      featured: true,
+    },
+    {
+      title: "Feel ABAC Online Order",
+      description:
+        "An online ordering system for Feel ABAC. Full-stack application with admin dashboard for managing orders and menu items.",
+      technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
+      category: "Web Development",
+      liveUrl: "https://feel-abac-online-order.vercel.app",
+      githubUrl: "https://github.com/Reon1917/feel-abac-online-order",
+      pdfUrl: "",
+      image: "/projects/feel-abac.png",
+      featured: false,
+    },
+    {
+      title: "PromptPay QR Generator",
+      description:
+        "A complete Next.js application for generating, parsing, and validating Thai PromptPay QR codes. Accept payments via bank account, phone number, or National ID.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "promptparse"],
+      category: "Web Development",
+      liveUrl: "",
+      githubUrl: "https://github.com/BhoneMyintSan/promptpay_QR",
+      pdfUrl: "",
+      image: "",
+      featured: false,
+    },
+    // ═══════════════════════════════════════
+    // OTHER PROJECTS (UI/UX, Desktop Apps, Games)
+    // ═══════════════════════════════════════
+    {
+      title: "Digital Menu System",
+      description:
+        "A desktop application for managing and viewing digital restaurant menus with multilingual support (Thai/English). Connects to Oracle database with intuitive GUI.",
+      technologies: ["Python", "Tkinter", "Oracle DB", "cx_Oracle"],
+      category: "Desktop App",
+      liveUrl: "",
+      githubUrl: "https://github.com/BhoneMyintSan/Digital_Menu",
+      pdfUrl: "/pdf/Digital%20food%20Menu.pdf",
+      image: "/projects/digital_menu.png",
+      featured: false,
+    },
+    {
+      title: "AU Digital Wallet",
+      description:
+        "Designed and implemented a digital wallet system that replaced paper coupons, reducing canteen wait times by 30% and improving user convenience through Figma-based UI/UX design.",
+      technologies: ["Figma", "UI/UX Design", "System Design"],
+      category: "UI/UX Design",
+      liveUrl: "",
+      githubUrl: "",
+      pdfUrl: "/pdf/AU%20digital%20wallet.pdf",
+      image: "/projects/AU%20digital%20wallet.png",
+      featured: false,
+    },
+    {
+      title: "Penguin Dive",
+      description:
+        "A 2D Java-based game with object-oriented design principles, implementing collision detection and scoring logic for dynamic gameplay experience.",
+      technologies: ["Java", "OOP", "Game Development"],
+      category: "Game Development",
+      liveUrl: "",
+      githubUrl: "https://github.com/BhoneMyintSan/penguin_dive",
+      pdfUrl: "",
+      image: "",
       featured: false,
     },
   ],
