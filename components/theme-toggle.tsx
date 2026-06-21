@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -72,6 +72,8 @@ export function FloatingThemeToggle() {
 
   return (
     <motion.button
+      type="button"
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="flex aspect-square w-10 items-center justify-center rounded-full bg-muted/50 hover:bg-muted transition-colors"
       whileHover={{ scale: 1.1 }}

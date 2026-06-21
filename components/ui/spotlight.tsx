@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionTemplate, useSpring, useMotionValue } from "framer-motion";
 
 interface SpotlightProps {
   children: React.ReactNode;
@@ -11,7 +11,6 @@ interface SpotlightProps {
 export function Spotlight({ children, className = "" }: SpotlightProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -19,10 +18,7 @@ export function Spotlight({ children, className = "" }: SpotlightProps) {
   const springConfig = { damping: 20, stiffness: 300 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const spotlightBackground = useMotionTemplate`radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(147, 51, 234, 0.15), transparent 40%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -40,22 +36,16 @@ export function Spotlight({ children, className = "" }: SpotlightProps) {
       className={`relative ${className}`}
     >
       {/* Main spotlight glow */}
-      {isMounted && (
-        <motion.div
-          className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(147, 51, 234, 0.15), transparent 40%)`,
-            // @ts-ignore
-            "--mouse-x": smoothX,
-            "--mouse-y": smoothY,
-          }}
-        />
-      )}
+      <motion.div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: spotlightBackground,
+        }}
+      />
       
       {/* Glowing orb that follows cursor */}
-      {isMounted && (
-        <motion.div
+      <motion.div
           className="pointer-events-none absolute w-64 h-64 -translate-x-1/2 -translate-y-1/2 z-10"
           style={{
             left: smoothX,
@@ -96,8 +86,7 @@ export function Spotlight({ children, className = "" }: SpotlightProps) {
               ease: "easeInOut",
             }}
           />
-        </motion.div>
-      )}
+      </motion.div>
       
       {children}
     </div>
