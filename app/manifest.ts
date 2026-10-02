@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
+import { portfolioData } from "@/data/portfolio";
+import { siteConfig } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Bhone Myint San — Data Analyst Portfolio",
-    short_name: "Bruce San",
-    description: "Data analytics, business intelligence, and web development portfolio.",
+    name: siteConfig.title,
+    short_name: portfolioData.personal.shortName,
+    description: siteConfig.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#17131f",
-    theme_color: "#8b5cf6",
+    background_color: "#f5f4ee",
+    theme_color: "#37674f",
     icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }
