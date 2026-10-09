@@ -20,7 +20,7 @@ export function ProjectLinks({ project, compact = false }: ProjectLinksProps) {
       <Icon className="h-3.5 w-3.5" aria-hidden="true" /> {label}
     </TrackedAnchor>
   ) : (
-    <Button key={event} asChild variant={primary ? "default" : "outline"} className="h-11 rounded-full px-5 shadow-none">
+    <Button key={event} asChild variant={primary ? "default" : "outline"} className={`glass-button h-11 rounded-full px-5 ${primary ? "glass-button-primary" : ""}`}>
       <TrackedAnchor href={href} target="_blank" rel="noreferrer" eventName={event} eventLabel={project.slug}>
         <Icon aria-hidden="true" /> {label}
       </TrackedAnchor>

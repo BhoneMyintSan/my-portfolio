@@ -6,7 +6,7 @@ import type { Project } from "@/types/portfolio";
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <article className="data-card group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card">
+    <article className="liquid-glass data-card group relative flex h-full flex-col overflow-hidden rounded-3xl">
       <Link href={`/projects/${project.slug}`} aria-label={`Explore ${project.title}`} className="project-preview relative block aspect-[16/10] overflow-hidden border-b border-border bg-secondary/60 p-5 sm:p-8">
         {project.image ? (
           <div className="relative h-full w-full overflow-hidden rounded-md border border-foreground/10 bg-background shadow-lg shadow-foreground/5 transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none">
@@ -15,7 +15,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-4 text-primary"><FileText className="h-10 w-10 stroke-1" aria-hidden="true" /><span className="eyebrow">A closer look</span></div>
         )}
-        <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-primary transition-transform group-hover:-rotate-12"><ArrowUpRight className="h-4 w-4" aria-hidden="true" /></span>
+        <span className="glass-button absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-primary transition-transform group-hover:-rotate-12"><ArrowUpRight className="h-4 w-4" aria-hidden="true" /></span>
       </Link>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="mb-4 flex items-center justify-between gap-4"><p className="eyebrow">{project.category}</p><span className="font-mono text-[10px] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span></div>

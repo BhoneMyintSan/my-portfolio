@@ -46,7 +46,7 @@ export function ExperienceSection({ experience, education, languages, strengths 
         <div className="space-y-4">
           {education.map((item) => (
             <FadeInView key={item.institution}>
-              <article className="rounded-2xl border border-border/70 bg-card/70 p-6">
+              <article className="liquid-glass relative rounded-3xl p-6">
                 <GraduationCap className="mb-5 h-7 w-7 text-primary" aria-hidden="true" />
                 <h3 className="font-semibold">{item.degree}</h3>
                 <p className="mt-1 text-primary">Major in {item.major}</p>

@@ -7,7 +7,7 @@ export function ContactSection({ personal, socials }: Pick<PortfolioData, "perso
   return (
     <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-28 pb-16 pt-8 sm:pb-24">
       <FadeInView>
-        <div className="contact-panel relative overflow-hidden rounded-2xl px-7 py-12 sm:p-12 lg:p-16">
+        <div className="liquid-glass contact-panel relative overflow-hidden rounded-3xl px-7 py-12 sm:p-12 lg:p-16">
           <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full border border-current opacity-10" aria-hidden="true" />
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
             <div>

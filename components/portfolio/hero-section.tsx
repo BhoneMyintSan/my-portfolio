@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Download, MapPin } from "lucide-react";
 import { FadeIn } from "@/components/animations";
 import { TrackedAnchor } from "@/components/tracked-anchor";
@@ -21,10 +20,10 @@ export function HeroSection({ personal, highlightedExperience }: { personal: Per
               <p className="mt-3 max-w-md text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">{personal.headline}</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="h-12 rounded-full px-6 shadow-none">
-                <Link href="#selected-work">Explore my work <ArrowUpRight aria-hidden="true" /></Link>
+              <Button asChild size="lg" className="glass-button glass-button-primary h-12 rounded-full px-6">
+                <a href="#selected-work">Explore my work <ArrowUpRight aria-hidden="true" /></a>
               </Button>
-              <Button variant="outline" size="lg" asChild className="h-12 rounded-full border-border bg-transparent px-6 shadow-none">
+              <Button variant="outline" size="lg" asChild className="glass-button h-12 rounded-full px-6">
                 <TrackedAnchor href={personal.resumeUrl} download={personal.resumeUrl.split("/").pop()} eventName="resume_download"><Download aria-hidden="true" /> Download résumé</TrackedAnchor>
               </Button>
             </div>
@@ -34,14 +33,12 @@ export function HeroSection({ personal, highlightedExperience }: { personal: Per
           </FadeIn>
         </div>
         <FadeIn delay={0.15} className="w-full max-w-[390px] justify-self-center lg:justify-self-end">
-          <figure className="portrait-frame relative">
-            <div className="absolute -right-4 -top-4 h-24 w-24 border-r border-t border-primary/40 sm:-right-5 sm:-top-5" aria-hidden="true" />
-            <div className="relative aspect-[4/4.6] overflow-hidden rounded-t-[10rem] bg-secondary">
+          <figure className="liquid-glass portrait-frame relative">
+            <div className="relative aspect-[4/5.4] overflow-hidden rounded-[10rem_10rem_1.5rem_1.5rem] bg-secondary">
               <Image src={personal.avatar} alt={`Portrait of ${personal.name}`} fill priority sizes="(min-width: 1024px) 390px, (min-width: 640px) 390px, 85vw" className="object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              <span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-black/35 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-md">The person behind the data</span>
             </div>
-            <figcaption className="flex items-start justify-between gap-4 border-x border-b border-border bg-card px-5 py-5">
+            <figcaption className="liquid-glass portrait-caption absolute inset-x-5 bottom-5 flex items-start justify-between gap-4 rounded-2xl px-4 py-5">
               <div><p className="text-sm font-semibold">{personal.shortName}</p><p className="mt-1 text-xs text-muted-foreground">{personal.title}</p></div>
               <span className="font-serif text-3xl italic text-primary" aria-hidden="true">b.</span>
             </figcaption>

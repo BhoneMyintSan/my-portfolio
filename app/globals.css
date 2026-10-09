@@ -59,13 +59,19 @@
   --secondary: #e9ece2;
   --secondary-foreground: #2e4639;
   --muted: #ebede5;
-  --muted-foreground: #5f6b61;
+  --muted-foreground: #566359;
   --accent: #e0e8da;
   --accent-foreground: #294734;
   --destructive: #b34939;
   --border: #d7dcd1;
   --input: #d7dcd1;
   --ring: #52755d;
+  --glass-fill: rgb(252 251 247 / 40%);
+  --glass-edge: rgb(255 255 255 / 92%);
+  --glass-highlight: rgb(255 255 255 / 65%);
+  --glass-reflection: rgb(255 255 255 / 26%);
+  --glass-shadow: rgb(37 65 47 / 18%);
+  --glass-glow: rgb(155 187 154 / 45%);
   --chart-1: #37674f;
   --chart-2: #899e79;
   --chart-3: #b8915e;
@@ -100,6 +106,12 @@
   --border: #344236;
   --input: #344236;
   --ring: #b4cca3;
+  --glass-fill: rgb(25 40 32 / 52%);
+  --glass-edge: rgb(213 237 205 / 32%);
+  --glass-highlight: rgb(226 243 214 / 14%);
+  --glass-reflection: rgb(226 243 214 / 7%);
+  --glass-shadow: rgb(0 0 0 / 32%);
+  --glass-glow: rgb(102 148 115 / 30%);
   --chart-1: #b4cca3;
   --chart-2: #82a78f;
   --chart-3: #d3b586;
@@ -126,19 +138,107 @@ body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; 
 .section-title { font-size: clamp(2rem, 3.5vw, 3.15rem); font-weight: 500; line-height: 1.12; letter-spacing: -0.05em; text-wrap: balance; }
 .eyebrow { font-family: var(--font-geist-mono), monospace; font-size: 10px; font-weight: 500; line-height: 1.7; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); }
 .editorial-section { position: relative; border-top: 1px solid var(--border); }
+.portfolio-canvas {
+  background:
+    radial-gradient(ellipse 440px 380px at 90% 280px, var(--glass-glow), transparent 80%),
+    radial-gradient(ellipse 400px 250px at 64% 700px, var(--glass-glow), transparent 80%),
+    radial-gradient(ellipse 700px 420px at 10% 1500px, var(--glass-glow), transparent 80%),
+    var(--background);
+}
+
+/* Translucent material with a bevel and a pointer-lit specular reflection. */
+.liquid-glass {
+  border: 1px solid var(--glass-edge);
+  background:
+    linear-gradient(125deg, var(--glass-highlight), transparent 32% 68%, var(--glass-reflection)),
+    var(--glass-fill);
+  box-shadow: inset 0 2px 1px var(--glass-highlight), inset 0 -2px 1px var(--glass-reflection), inset 2px 0 8px var(--glass-reflection), 0 16px 44px -18px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+  backdrop-filter: blur(18px) saturate(165%);
+}
+.liquid-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 220px 160px at var(--glass-pointer-x, 15%) var(--glass-pointer-y, 0%), var(--glass-reflection), transparent 75%);
+  box-shadow: inset 1px 1px 0 var(--glass-highlight), inset -1px -1px 0 var(--glass-reflection);
+}
+.glass-navigation {
+  --glass-fill: color-mix(in srgb, var(--card) 64%, transparent);
+  --muted-foreground: var(--foreground);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+}
+.dark .glass-navigation { --glass-fill: color-mix(in srgb, var(--card) 82%, transparent); }
+.glass-navigation a[aria-current="location"] {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--primary) 11%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+.glass-button {
+  border: 1px solid var(--glass-edge);
+  background: linear-gradient(155deg, var(--glass-highlight), transparent 60%), var(--glass-fill);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 4px 14px -6px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+.glass-button-primary {
+  border-color: color-mix(in srgb, var(--primary) 70%, white);
+  background: linear-gradient(160deg, rgb(255 255 255 / 12%), transparent 55%), var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 22%), 0 6px 18px -8px color-mix(in srgb, var(--primary) 55%, transparent);
+}
 .data-card { transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease; }
-.data-card:hover { border-color: color-mix(in oklab, var(--primary) 50%, var(--border)); box-shadow: 0 12px 40px color-mix(in oklab, var(--foreground) 4%, transparent); }
-.portrait-frame { box-shadow: 16px 16px 0 var(--secondary); }
+.portrait-frame {
+  border-radius: 11rem 11rem 2rem 2rem;
+  padding: 10px;
+  box-shadow: inset 0 2px 1px var(--glass-highlight), inset 0 -2px 2px var(--glass-reflection), 0 24px 60px -20px var(--glass-shadow);
+}
+.portrait-caption {
+  --glass-fill: rgb(252 251 247 / 70%);
+  --muted-foreground: #425347;
+}
+.dark .portrait-caption {
+  --glass-fill: rgb(20 34 26 / 75%);
+  --muted-foreground: #c2cfbd;
+}
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 22px -8px var(--glass-shadow); }
+  .data-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--primary) 25%, var(--glass-edge)); box-shadow: inset 0 1px 0 var(--glass-highlight), 0 24px 48px -20px var(--glass-shadow); }
+}
 .project-preview { background-image: radial-gradient(var(--border) 0.7px, transparent 0.7px); background-size: 10px 10px; }
-.contact-panel { background: #263d30; color: #f0f1e8; }
-.dark .contact-panel { background: #c3d5b4; color: #20332b; }
+.contact-panel {
+  --glass-fill: rgb(38 61 48 / 94%);
+  --glass-edge: rgb(189 218 174 / 35%);
+  --glass-highlight: rgb(226 243 214 / 9%);
+  --glass-reflection: rgb(226 243 214 / 5%);
+  color: #f0f1e8;
+}
+.dark .contact-panel {
+  --glass-fill: rgb(195 213 180 / 94%);
+  --glass-edge: rgb(241 255 228 / 65%);
+  --glass-highlight: rgb(255 255 255 / 24%);
+  --glass-reflection: rgb(255 255 255 / 14%);
+  color: #20332b;
+}
 .contact-panel .contact-muted { color: #bac8b7; }
 .dark .contact-panel .contact-muted { color: #3e5440; }
 ::selection { background: color-mix(in oklab, var(--primary) 24%, transparent); color: var(--foreground); }
 :focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
 .mobile-navigation { padding-bottom: max(0.375rem, env(safe-area-inset-bottom)); }
+/* Glass is the default material; unsupported browsers use opaque surfaces. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass, .glass-button { background: var(--card); border-color: var(--border); }
+  .glass-button-primary { background: var(--primary); }
+  .contact-panel { background: #263d30; }
+  .dark .contact-panel { background: #c3d5b4; }
+}
 @media (max-width: 380px) { .hero-title { font-size: 3.15rem; } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .glass-button:hover, .data-card:hover { transform: none; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

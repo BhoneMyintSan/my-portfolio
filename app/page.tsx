@@ -18,7 +18,7 @@ export default function HomePage() {
   const highlightedExperience = getHighlightedExperience(experience);
   const structuredData = createPersonStructuredData(portfolioData, siteUrl);
   return (
-    <div id="top" className="min-h-screen overflow-x-clip bg-background">
+    <div id="top" className="portfolio-canvas min-h-screen overflow-x-clip">
       <a href="#main-content" className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-primary px-4 py-2 text-primary-foreground transition-transform focus:translate-y-0">Skip to content</a>
       <PortfolioNavigation />
       <main id="main-content" className="mx-auto max-w-7xl px-6 lg:px-12">

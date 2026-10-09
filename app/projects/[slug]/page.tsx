@@ -39,9 +39,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-6 pb-16 pt-6 sm:pb-24 sm:pt-8">
-      <div className="mb-12 flex items-center justify-between border-b border-border pb-5 sm:mb-16">
-        <Button asChild variant="ghost" className="-ml-3 h-11 rounded-full">
+    <div className="portfolio-canvas min-h-screen">
+    <main className="mx-auto max-w-5xl px-6 pb-16 pt-6 sm:pb-24 sm:pt-8">
+      <div className="liquid-glass glass-navigation sticky top-3 z-50 mb-12 flex items-center justify-between rounded-full p-2 sm:mb-16">
+        <Button asChild variant="ghost" className="h-11 rounded-full">
           <Link href="/#projects"><ArrowLeft aria-hidden="true" /> Back to projects</Link>
         </Button>
         <ThemeToggle />
@@ -61,7 +62,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </header>
 
         {project.image && (
-          <div className="project-preview mt-12 rounded-xl border border-border bg-secondary/60 p-4 sm:p-8">
+          <div className="liquid-glass relative mt-12 rounded-3xl p-4 sm:p-8">
             <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-foreground/10 bg-background shadow-lg shadow-foreground/5">
               <Image src={project.image} alt={`${project.title} interface or report preview`} fill priority sizes="(min-width: 1024px) 896px, 90vw" className="object-contain" />
             </div>
@@ -88,12 +89,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </section>
         </div>
 
-        <section aria-labelledby="outcome-heading" className="mt-16 rounded-xl border border-border bg-secondary/60 p-7 sm:p-10">
+        <section aria-labelledby="outcome-heading" className="liquid-glass relative mt-16 rounded-3xl p-7 sm:p-10">
           <p className="eyebrow mb-4">03 / Deliverable</p>
           <h2 id="outcome-heading" className="text-2xl font-medium tracking-tight">The outcome</h2>
           <p className="mt-4 max-w-3xl leading-7 text-muted-foreground">{project.outcome}</p>
         </section>
       </article>
     </main>
+    </div>
   );
 }
